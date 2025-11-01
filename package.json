@@ -1,6 +1,7 @@
 {
   "name": "game",
   "version": "0.1.0",
+  "homepage": "https://skossi.github.io/skirndla",
   "private": true,
   "dependencies": {
     "@headlessui/react": "^1.4.2",
@@ -23,6 +24,7 @@
   },
   "scripts": {
     "build": "react-scripts build",
+    "deploy": "npm run build && gh-pages -d build",
     "eject": "react-scripts eject",
     "fix": "prettier --write src",
     "lint": "prettier --check src",
