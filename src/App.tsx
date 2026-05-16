@@ -167,7 +167,6 @@ function App() {
   }, [isGameWon, isGameLost, showSuccessAlert])
 
   const onChar = (value: string) => {
-    console.log(currentGuess.length)
     if (currentGuess.length === 6 && currentGuess.indexOf(' ') === -1) {
       // Auto-insert space between first and second name
       setCurrentGuess(currentGuess + ' ' + value)

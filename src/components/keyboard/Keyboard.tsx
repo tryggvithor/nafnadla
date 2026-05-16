@@ -19,6 +19,7 @@ export const Keyboard = ({
   guesses,
   isRevealing,
 }: Props) => {
+  const allowedChars = "AÁBDÐEÉFGHIÍJKLMNOÓPRSTUÚVXYÝÞÆÖ"
   const charStatuses = getStatuses(guesses)
 
   const onClick = (value: string) => {
@@ -39,8 +40,8 @@ export const Keyboard = ({
         onDelete()
       } else {
         const key = localeAwareUpperCase(e.key)
-        // TODO: check this test if the range works with non-english letters
-        if (key.length === 1 && key >= 'A' && key <= 'Z') {
+        // TODO: keyup is probably not the way to go for composited accented chars
+        if (key.length === 1 && allowedChars.includes(key.toUpperCase())) { 
           onChar(key)
         }
       }
