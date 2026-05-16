@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/nafnadla/static/css/main.30e68ad3.css",
+    "main.js": "/nafnadla/static/js/main.b373f22f.js",
+    "static/js/787.b3f9d252.chunk.js": "/nafnadla/static/js/787.b3f9d252.chunk.js",
+    "index.html": "/nafnadla/index.html",
+    "main.30e68ad3.css.map": "/nafnadla/static/css/main.30e68ad3.css.map",
+    "main.b373f22f.js.map": "/nafnadla/static/js/main.b373f22f.js.map",
+    "787.b3f9d252.chunk.js.map": "/nafnadla/static/js/787.b3f9d252.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.30e68ad3.css",
+    "static/js/main.b373f22f.js"
+  ]
+}
