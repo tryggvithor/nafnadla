@@ -1,15 +1,17 @@
 import { WORDS } from '../constants/wordlist'
-// import { VALID_GUESSES } from '../constants/validGuesses'
+import { VALID_GUESSES_FIRST } from '../constants/validGuessesFirst'
+import { VALID_GUESSES_SECOND } from '../constants/validGuessesSecond'
 import { WRONG_SPOT_MESSAGE, NOT_CONTAINED_MESSAGE } from '../constants/strings'
 import { getGuessStatuses } from './statuses'
 import { default as GraphemeSplitter } from 'grapheme-splitter'
 
 export const isWordInWordList = (word: string) => {
-  return true;
-  // (
-  //   WORDS.includes(localeAwareLowerCase(word)) ||
-  //   VALID_GUESSES.includes(localeAwareLowerCase(word))
-  // )
+  const [first, second] = word.trim().split(/\s+/)
+  return (
+    WORDS.includes(localeAwareLowerCase(word)) ||
+    (VALID_GUESSES_FIRST.includes(localeAwareLowerCase(first)) &&
+    VALID_GUESSES_SECOND.includes(localeAwareLowerCase(second)))
+  )
 }
 
 export const isWinningWord = (word: string) => {
