@@ -1,6 +1,6 @@
 import { CharStatus } from '../../lib/statuses'
 import classnames from 'classnames'
-import { REVEAL_TIME_MS } from '../../constants/settings'
+import { REVEAL_TIME_MS, WORD_SPLIT_INDEX } from '../../constants/settings'
 import { getStoredIsHighContrastMode } from '../../lib/localStorage'
 
 type Props = {
@@ -20,7 +20,7 @@ export const Cell = ({
 }: Props) => {
   const isFilled = value && !isCompleted
   const shouldReveal = isRevealing && isCompleted
-  const animationDelay = `${position * REVEAL_TIME_MS}ms`
+  const animationDelay = `${(position > WORD_SPLIT_INDEX ? position - 1 : position) * REVEAL_TIME_MS}ms`
   const isHighContrast = getStoredIsHighContrastMode()
 
   const classes = classnames(

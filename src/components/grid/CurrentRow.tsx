@@ -1,4 +1,4 @@
-import { MAX_WORD_LENGTH } from '../../constants/settings'
+import { MAX_WORD_LENGTH, WORD_SPLIT_INDEX } from '../../constants/settings'
 import { Cell } from './Cell'
 import { unicodeSplit } from '../../lib/words'
 
@@ -15,10 +15,14 @@ export const CurrentRow = ({ guess, className }: Props) => {
   return (
     <div className={classes}>
       {splitGuess.map((letter, i) => (
-        <Cell key={i} value={letter} />
+        i === WORD_SPLIT_INDEX
+          ? <div key={i} className="w-6" />
+          : <Cell key={i} value={letter} />
       ))}
       {emptyCells.map((_, i) => (
-        <Cell key={i} />
+        i === WORD_SPLIT_INDEX - splitGuess.length
+        ? <div key={i} className="w-6" />
+        : <Cell key={i} />
       ))}
     </div>
   )

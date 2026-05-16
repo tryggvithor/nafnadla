@@ -24,6 +24,7 @@ import {
   REVEAL_TIME_MS,
   GAME_LOST_INFO_DELAY,
   WELCOME_INFO_MODAL_MS,
+  WORD_SPLIT_INDEX,
 } from './constants/settings'
 import {
   isWordInWordList,
@@ -166,7 +167,11 @@ function App() {
   }, [isGameWon, isGameLost, showSuccessAlert])
 
   const onChar = (value: string) => {
-    if (
+    console.log(currentGuess.length)
+    if (currentGuess.length === 6 && currentGuess.indexOf(' ') === -1) {
+      // Auto-insert space between first and second name
+      setCurrentGuess(currentGuess + ' ' + value)
+    } else if (
       unicodeLength(`${currentGuess}${value}`) <= MAX_WORD_LENGTH &&
       guesses.length < MAX_CHALLENGES &&
       !isGameWon
@@ -176,9 +181,22 @@ function App() {
   }
 
   const onDelete = () => {
-    setCurrentGuess(
-      new GraphemeSplitter().splitGraphemes(currentGuess).slice(0, -1).join('')
-    )
+    if (currentGuess.length === WORD_SPLIT_INDEX + 2) {
+      // when deleting the first letter of the second word, we are in process of adding the second, hence the + 2
+      setCurrentGuess(
+        new GraphemeSplitter()
+          .splitGraphemes(currentGuess)
+          .slice(0, -2)
+          .join('')
+      )
+    } else {
+      setCurrentGuess(
+        new GraphemeSplitter()
+          .splitGraphemes(currentGuess)
+          .slice(0, -1)
+          .join('')
+      )
+    }
   }
 
   const onEnter = () => {

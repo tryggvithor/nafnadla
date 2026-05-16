@@ -1,6 +1,7 @@
 import { getGuessStatuses } from '../../lib/statuses'
 import { Cell } from './Cell'
 import { unicodeSplit } from '../../lib/words'
+import { WORD_SPLIT_INDEX } from '../../constants/settings'
 
 type Props = {
   guess: string
@@ -14,7 +15,9 @@ export const CompletedRow = ({ guess, isRevealing }: Props) => {
   return (
     <div className="flex justify-center mb-1">
       {splitGuess.map((letter, i) => (
-        <Cell
+        i === WORD_SPLIT_INDEX
+        ? <div key={i} className="w-6" />
+        : <Cell
           key={i}
           value={letter}
           status={statuses[i]}
